@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="hdfsCachePool-core" />
+        <module name="hdfsCachePool-kafka" />
+        <module name="hdfsCachePool-storm" />
+        <module name="hdfsCachePoolcore" />
+        <module name="hdfsCachePoolkafka" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hdfsbuffer" target="1.5" />
+      <module name="hdfsCachePool" target="1.5" />
+      <module name="hdfsCachePool-core" target="1.7" />
+      <module name="hdfsCachePool-kafka" target="1.5" />
+      <module name="hdfsCachePool-storm" target="1.7" />
+      <module name="hdfsCachePoolcore" target="1.5" />
+      <module name="hdfsCachePoolkafka" target="1.5" />
+      <module name="hdfsCachePoolstorm" target="1.5" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

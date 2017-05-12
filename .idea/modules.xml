@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/hdfsCachePool.iml" filepath="$PROJECT_DIR$/hdfsCachePool.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfsCachePool-core/hdfsCachePool-core.iml" filepath="$PROJECT_DIR$/hdfsCachePool-core/hdfsCachePool-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfsCachePool-kafka/hdfsCachePool-kafka.iml" filepath="$PROJECT_DIR$/hdfsCachePool-kafka/hdfsCachePool-kafka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/hdfsCachePool-storm/hdfsCachePool-storm.iml" filepath="$PROJECT_DIR$/hdfsCachePool-storm/hdfsCachePool-storm.iml" />
+    </modules>
+  </component>
+</project>
