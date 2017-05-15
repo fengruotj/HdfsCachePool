@@ -17,7 +17,7 @@
       <module name="hdfsbuffer" target="1.5" />
       <module name="hdfsCachePool" target="1.5" />
       <module name="hdfsCachePool-core" target="1.7" />
-      <module name="hdfsCachePool-kafka" target="1.5" />
+      <module name="hdfsCachePool-kafka" target="1.7" />
       <module name="hdfsCachePool-storm" target="1.7" />
       <module name="hdfsCachePoolcore" target="1.5" />
       <module name="hdfsCachePoolkafka" target="1.5" />

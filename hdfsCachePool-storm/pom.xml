@@ -20,6 +20,12 @@
     <dependencies>
 
         <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
             <groupId>com.hdfsbuffer</groupId>
             <artifactId>hdfsCachePool-core</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -46,50 +52,50 @@
             </configuration>
         </plugin>
 
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <configuration>
-                <createDependencyReducedPom>true</createDependencyReducedPom>
-                <filters>
-                    <filter>
-                        <artifact>*:*</artifact>
-                        <excludes>
-                            <exclude>META-INF/*.SF</exclude>
-                            <exclude>META-INF/*.sf</exclude>
-                            <exclude>META-INF/*.DSA</exclude>
-                            <exclude>META-INF/*.dsa</exclude>
-                            <exclude>META-INF/*.RSA</exclude>
-                            <exclude>META-INF/*.rsa</exclude>
-                            <exclude>META-INF/*.EC</exclude>
-                            <exclude>META-INF/*.ec</exclude>
-                            <exclude>META-INF/MSFTSIG.SF</exclude>
-                            <exclude>META-INF/MSFTSIG.RSA</exclude>
-                        </excludes>
-                    </filter>
-                </filters>
-            </configuration>
-            <executions>
-                <execution>
-                    <phase>package</phase>
-                    <goals>
-                        <goal>shade</goal>
-                    </goals>
-                    <configuration>
-                        <transformers>
-                            <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                            <transformer
-                                    implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                <manifestEntries>
-                                    <!--<KafkaDataOutputMain-Class>com.basic.main.CopyFileToHDFSBlockMaKafkaDataOutputMain-Class>&ndash;&gt;-->
-                                </manifestEntries>
-                            </transformer>
-                        </transformers>
-                    </configuration>
-                </execution>
-            </executions>
-        </plugin>
+        <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-shade-plugin</artifactId>-->
+            <!--<configuration>-->
+                <!--<createDependencyReducedPom>true</createDependencyReducedPom>-->
+                <!--<filters>-->
+                    <!--<filter>-->
+                        <!--<artifact>*:*</artifact>-->
+                        <!--<excludes>-->
+                            <!--<exclude>META-INF/*.SF</exclude>-->
+                            <!--<exclude>META-INF/*.sf</exclude>-->
+                            <!--<exclude>META-INF/*.DSA</exclude>-->
+                            <!--<exclude>META-INF/*.dsa</exclude>-->
+                            <!--<exclude>META-INF/*.RSA</exclude>-->
+                            <!--<exclude>META-INF/*.rsa</exclude>-->
+                            <!--<exclude>META-INF/*.EC</exclude>-->
+                            <!--<exclude>META-INF/*.ec</exclude>-->
+                            <!--<exclude>META-INF/MSFTSIG.SF</exclude>-->
+                            <!--<exclude>META-INF/MSFTSIG.RSA</exclude>-->
+                        <!--</excludes>-->
+                    <!--</filter>-->
+                <!--</filters>-->
+            <!--</configuration>-->
+            <!--<executions>-->
+                <!--<execution>-->
+                    <!--<phase>package</phase>-->
+                    <!--<goals>-->
+                        <!--<goal>shade</goal>-->
+                    <!--</goals>-->
+                    <!--<configuration>-->
+                        <!--<transformers>-->
+                            <!--<transformer-->
+                                    <!--implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>-->
+                            <!--<transformer-->
+                                    <!--implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
+                                <!--<manifestEntries>-->
+                                    <!--&lt;!&ndash;<KafkaDataOutputMain-Class>com.basic.main.CopyFileToHDFSBlockMaKafkaDataOutputMain-Class>&ndash;&gt;&ndash;&gt;-->
+                                <!--</manifestEntries>-->
+                            <!--</transformer>-->
+                        <!--</transformers>-->
+                    <!--</configuration>-->
+                <!--</execution>-->
+            <!--</executions>-->
+        <!--</plugin>-->
 
     </plugins>
     </build>
