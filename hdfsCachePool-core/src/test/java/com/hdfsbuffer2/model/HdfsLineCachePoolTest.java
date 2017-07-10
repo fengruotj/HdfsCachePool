@@ -13,7 +13,7 @@ import java.util.List;
 public class HdfsLineCachePoolTest {
 //    @Test
 //    public void runHDFSCachePool() throws Exception {
-//        DataInputFormat dataInputFormat=new DataInputFormat();
+//        DataInputFormatTest dataInputFormat=new DataInputFormatTest();
 //        dataInputFormat.setBlockSize(Long.valueOf(128*1024*1024));//设置每个 byteBuffer 的缓存大小
 //        List<InputSplit> splits= dataInputFormat.getSplits("/user/root/flinkwordcount/input/resultTweets.txt");
 //        int CachePoolBufferNum=Integer.valueOf(10);//缓冲池缓存Block大小
