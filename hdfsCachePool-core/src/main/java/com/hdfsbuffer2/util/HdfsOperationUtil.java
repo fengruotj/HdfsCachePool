@@ -18,7 +18,7 @@ import java.util.List;
 public class HdfsOperationUtil {
 
     private static Configuration conf = new Configuration();
-    private static final String HADOOP_URL="hdfs://192.168.223.202:9000";
+    private static String HADOOP_URL = null;
 
     private static FileSystem fs;
 
@@ -26,6 +26,8 @@ public class HdfsOperationUtil {
 
     static {
         try {
+            PropertiesUtil.init("/hdfscachepool.properties");
+            HADOOP_URL = PropertiesUtil.getProperties("HADOOP_URL");
             FileSystem.setDefaultUri(conf, HADOOP_URL);
             fs = FileSystem.get(conf);
             hdfs = (DistributedFileSystem)fs;
@@ -34,7 +36,7 @@ public class HdfsOperationUtil {
         }
     }
 
-    public static FileSystem getFs() {
+    public static synchronized FileSystem getFs() {
         return fs;
     }
 
