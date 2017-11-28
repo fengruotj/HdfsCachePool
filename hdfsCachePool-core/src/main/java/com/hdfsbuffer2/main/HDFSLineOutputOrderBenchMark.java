@@ -3,10 +3,10 @@ package com.hdfsbuffer2.main;
 import com.hdfsbuffer2.bufferinterface.LinedataOutputHandler;
 import com.hdfsbuffer2.model.HdfsLineCachePool;
 import com.hdfsbuffer2.task.DataInputFormat;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -19,7 +19,7 @@ import java.util.List;
  * java -Xmx4028m -Xms4028m -cp hdfsCachePool-core-1.0-SNAPSHOT.jar com.hdfsbuffer2.main.HDFSLineOutputOrderBenchMark /user/root/flinkwordcount/input/resultTweets.txt 10 128
  */
 public class HDFSLineOutputOrderBenchMark {
-    private static final Logger LOG = LoggerFactory.getLogger(HDFSLineOutputOrderBenchMark.class);
+    private static final Log LOG = LogFactory.getLog(HDFSLineOutputOrderBenchMark.class);
     private static List<InputSplit> splits;//输入文件分片的数据类型 InputSplit
 
     public static void main(String[] args) throws IOException, InterruptedException {

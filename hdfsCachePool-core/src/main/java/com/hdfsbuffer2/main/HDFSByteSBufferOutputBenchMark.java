@@ -3,9 +3,9 @@ package com.hdfsbuffer2.main;
 import com.hdfsbuffer2.bufferinterface.BufferdataOutputHandler;
 import com.hdfsbuffer2.model.HdfsCachePool;
 import com.hdfsbuffer2.task.DataInputFormat;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.mapreduce.InputSplit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -24,7 +24,7 @@ import java.util.List;
  * 2017-04-28 16:06:45  [ main:5677 ] - [ INFO ]  totalTime:34 s------or------0 min
  */
 public class HDFSByteSBufferOutputBenchMark {
-    private static final Logger LOG = LoggerFactory.getLogger(HDFSByteSBufferOutputBenchMark.class);
+    private static final Log LOG = LogFactory.getLog(HDFSByteSBufferOutputBenchMark.class);
     private static List<InputSplit> splits;//输入文件分片的数据类型 InputSplit
 
     public static void main(String[] args) throws IOException, InterruptedException {

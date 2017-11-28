@@ -2,9 +2,9 @@ package com.hdfsbuffer2.main;
 
 import com.hdfsbuffer2.model.HdfsCachePool;
 import com.hdfsbuffer2.task.DataInputFormat;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.mapreduce.InputSplit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -16,7 +16,7 @@ import java.util.List;
  * java -Xmx4028m -Xms4028m -cp hdfsCachePool-core-1.0-SNAPSHOT.jar com.hdfsbuffer2.main.ChannelDataOuputMain /user/root/flinkwordcount/input/resultTweets.txt 10
  */
 public class ChannelDataOuputMain {
-    private static final Logger LOG = LoggerFactory.getLogger(ChannelDataOuputMain.class);
+    private static final Log LOG = LogFactory.getLog(ChannelDataOuputMain.class);
     private static List<InputSplit> splits;//输入文件分片的数据类型 InputSplit
     private static DataInputFormat dataInputFormat=new DataInputFormat();
 

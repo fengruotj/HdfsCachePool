@@ -1,11 +1,11 @@
 package com.hdfsbuffer2.main;
 
 import com.hdfsbuffer2.util.HdfsOperationUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +22,7 @@ import java.sql.Timestamp;
  * 2017-04-30 13:05:29  [ main:60068 ] - [ INFO ]  totalTime:58 s------or------0 min
  */
 public class FSDataInputLineReaderBenchMark {
-    private static final Logger LOG = LoggerFactory.getLogger(FSDataInputLineReaderBenchMark.class);
+    private static final Log LOG = LogFactory.getLog(FSDataInputLineReaderBenchMark.class);
     public static void main(String[] args) throws IOException {
         String inputFile=args[0];
         FileSystem fs = HdfsOperationUtil.getFs();

@@ -1,11 +1,11 @@
 package com.hdfsbuffer2.main;
 
 import com.hdfsbuffer2.util.HdfsOperationUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -21,7 +21,7 @@ import java.sql.Timestamp;
  * 2017-04-24 14:54:23  [ main:33802 ] - [ INFO ]  totalTime:32 s------or------0 min
  */
 public class FSDataInputStreamBenchMark {
-    private static final Logger LOG = LoggerFactory.getLogger(FSDataInputStreamBenchMark.class);
+    private static final Log LOG = LogFactory.getLog(FSDataInputStreamBenchMark.class);
     private static HdfsOperationUtil hdfsOperationUtil=new HdfsOperationUtil();
     private static byte[] recordDelimiterBytes;//记录分割符
     private static long Totalrows=0L;

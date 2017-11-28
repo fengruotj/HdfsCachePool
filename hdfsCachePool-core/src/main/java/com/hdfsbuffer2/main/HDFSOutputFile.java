@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * locate com.hdfsbuffer2.main
  * Created by mastertj on 2017/11/14.
- *  java -Xmx4028m -Xms4028m -cp hdfsCachePool-core-1.0-SNAPSHOT.jar com.hdfsbuffer2.mainHDFSOutputFile /user/root/flinkwordcount/input/resultTweets.txt /root/TJ/a.txt 10 128
+ *  java -Xmx4028m -Xms4028m -cp hdfsCachePool-core-1.0-SNAPSHOT.jar com.hdfsbuffer2.main.HDFSOutputFile /user/root/flinkwordcount/input/resultTweets.txt /root/TJ/a.txt 10 128
  */
 public class HDFSOutputFile {
     private static final Log LOG = LogFactory.getLog(HdfsCachePool.class);
