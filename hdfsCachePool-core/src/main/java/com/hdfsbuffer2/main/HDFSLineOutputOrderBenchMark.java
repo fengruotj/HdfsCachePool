@@ -43,6 +43,7 @@ public class HDFSLineOutputOrderBenchMark {
         LOG.info("endTime:"+new Timestamp(endTimeSystemTime));
         long timelong = (endTimeSystemTime-startTimeSystemTime) / 1000;
         LOG.info("totalTime:"+timelong+" s"+"------or------"+timelong/60+" min");
+        hdfsLineCachePool.releaseHdfsCachePool();
         System.exit(0);
     }
 }

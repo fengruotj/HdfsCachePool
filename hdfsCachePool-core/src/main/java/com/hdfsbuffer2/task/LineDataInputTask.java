@@ -47,11 +47,11 @@ public class LineDataInputTask implements Runnable {
 
     private int block_num;
 
-    public LineDataInputTask(HDFSLineBuffer hdfsLineBuffer, InputSplit inputSplit, int block_num) throws IOException {
+    public LineDataInputTask(FileSystem fileSystem,HDFSLineBuffer hdfsLineBuffer, InputSplit inputSplit, int block_num) throws IOException {
         this.hdfsLineBuffer = hdfsLineBuffer;
         this.fileSplit= (FileSplit) inputSplit;
         this.block_num=block_num;
-        fileSystem= HdfsOperationUtil.getFs();
+        this.fileSystem= fileSystem;
     }
 
     public void initialize(InputSplit genericSplit) throws IOException {
@@ -60,8 +60,7 @@ public class LineDataInputTask implements Runnable {
         this.start = split.getStart();
         this.end = this.start + split.getLength();
         Path file = split.getPath();
-        FileSystem fs = file.getFileSystem(HdfsOperationUtil.getConf());
-        this.fileIn = fs.open(file);
+        this.fileIn = fileSystem.open(file);
         CompressionCodec codec = (new CompressionCodecFactory(HdfsOperationUtil.getConf())).getCodec(file);
         if(null != codec) {
             this.isCompressedInput = true;
@@ -176,6 +175,12 @@ public class LineDataInputTask implements Runnable {
             e.printStackTrace();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
+        }finally {
+            try {
+                fileIn.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

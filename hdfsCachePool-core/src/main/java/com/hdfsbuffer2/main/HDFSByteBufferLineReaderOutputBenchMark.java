@@ -57,6 +57,7 @@ public class HDFSByteBufferLineReaderOutputBenchMark {
         LOG.info("endTime:"+new Timestamp(endTimeSystemTime));
         long timelong = (endTimeSystemTime-startTimeSystemTime) / 1000;
         LOG.info("totalTime:"+timelong+" s"+"------or------"+timelong/60+" min");
+        hdfsCachePool.releaseHdfsCachePool();//释放fileSystem
         System.exit(0);
     }
 }

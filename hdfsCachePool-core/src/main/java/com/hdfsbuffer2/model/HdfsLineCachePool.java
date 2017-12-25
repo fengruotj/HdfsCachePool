@@ -2,8 +2,10 @@ package com.hdfsbuffer2.model;
 
 import com.hdfsbuffer2.bufferinterface.LinedataOutputHandler;
 import com.hdfsbuffer2.task.LineDataInputTask;
+import com.hdfsbuffer2.util.HdfsOperationUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
 
@@ -22,6 +24,8 @@ public class HdfsLineCachePool {
 
     private static final Log LOG = LogFactory.getLog(HdfsLineCachePool.class);
     private static HdfsLineCachePool instance;//缓存池唯一实例
+
+    private FileSystem fileSystem= HdfsOperationUtil.getFs();
 
     private HDFSLineBuffer[] LinebufferArray;
 
@@ -98,7 +102,7 @@ public class HdfsLineCachePool {
      */
     public void datainputBuffer(int bufferBlock, InputSplit inputSplit, int blockNum) throws IOException, InterruptedException {
         setInstance(bufferBlock,inputSplit);
-        LineDataInputTask dataInputTask = new LineDataInputTask(this.LinebufferArray[bufferBlock], inputSplit,blockNum);
+        LineDataInputTask dataInputTask = new LineDataInputTask(fileSystem,this.LinebufferArray[bufferBlock], inputSplit,blockNum);
         executor.execute(dataInputTask);
     }
 
@@ -241,4 +245,14 @@ public class HdfsLineCachePool {
         }
     }
 
+    /**
+     * 释放资源
+     */
+    public void releaseHdfsCachePool(){
+        try {
+            fileSystem.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

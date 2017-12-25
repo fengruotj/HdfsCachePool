@@ -3,6 +3,7 @@ package com.hdfsbuffer2.model;
 import com.hdfsbuffer2.bufferinterface.BufferdataOutputHandler;
 import com.hdfsbuffer2.channelhandler.HDFSBufferHandler;
 import com.hdfsbuffer2.task.DataInputTask;
+import com.hdfsbuffer2.util.HdfsOperationUtil;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -13,6 +14,7 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.mapreduce.InputSplit;
 
 import java.io.IOException;
@@ -28,6 +30,8 @@ import java.util.concurrent.Executors;
 public class HdfsCachePool {
     private static final Log LOG = LogFactory.getLog(HdfsCachePool.class);
     private static HdfsCachePool instance;//缓存池唯一实例
+
+    private FileSystem fileSystem= HdfsOperationUtil.getFs();
 
     private HDFSBuffer[] bufferArray;
 
@@ -116,7 +120,7 @@ public class HdfsCachePool {
      */
     public void datainputBuffer(int bufferBlock, InputSplit inputSplit, int blockNum) throws IOException, InterruptedException {
         setInstance(bufferBlock,inputSplit);
-        DataInputTask dataInputTask = new DataInputTask(this.bufferArray[bufferBlock], inputSplit,blockNum);
+        DataInputTask dataInputTask = new DataInputTask(fileSystem,this.bufferArray[bufferBlock], inputSplit,blockNum);
         executor.execute(dataInputTask);
     }
 
@@ -313,5 +317,16 @@ public class HdfsCachePool {
 
     public void setBufferNum(int bufferNum) {
         this.bufferNum = bufferNum;
+    }
+
+    /**
+     * 释放资源
+     */
+    public void releaseHdfsCachePool(){
+        try {
+            fileSystem.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
