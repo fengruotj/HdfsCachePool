@@ -250,8 +250,8 @@ public class HdfsLineCachePool {
      */
     public void releaseHdfsCachePool(){
         try {
-            fileSystem.close();
-        } catch (IOException e) {
+            HdfsOperationUtil.releaseHDFSConnections();
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -16,7 +16,6 @@ import java.util.List;
  */
 public class DataInputFormat {
 
-    private HdfsOperationUtil hdfsOperationUtil=new HdfsOperationUtil();
     private static final Logger LOG = LoggerFactory.getLogger(DataInputFormat.class);
 
     private Long blockSize=null;
@@ -39,7 +38,7 @@ public class DataInputFormat {
     public List<InputSplit> getSplits(String inputpath) throws IOException {
 
         ArrayList splits = new ArrayList();
-        List files = hdfsOperationUtil.listFileStatus(inputpath);
+        List files = HdfsOperationUtil.listFileStatus(inputpath);
         Iterator i$ = files.iterator();
 
         while (true) {

@@ -2,6 +2,8 @@ package com.hdfsbuffer2.task;
 
 import com.hdfsbuffer2.model.HDFSBuffer;
 import com.hdfsbuffer2.util.HdfsOperationUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -11,12 +13,11 @@ import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.lib.input.CompressedSplitLineReader;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.input.SplitLineReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.sql.Timestamp;
+import java.util.Arrays;
 
 /**
  * Created by 79875 on 2017/4/1.
@@ -24,7 +25,7 @@ import java.sql.Timestamp;
  */
 public class DataInputTask implements Runnable {
     private static final int BUFFER_SIZE=1024*4;
-    private static final Logger LOG = LoggerFactory.getLogger(DataInputTask.class);
+    private static final Log LOG = LogFactory.getLog(DataInputTask.class);
     private long start;
     private long pos;
     private long end;
@@ -108,6 +109,7 @@ public class DataInputTask implements Runnable {
                 byteBuffer.put(buf,0,length);
             }
             long endTimeSystemTime = System.currentTimeMillis();
+            LOG.info("DataInputTask blokc_host: "+ Arrays.toString(fileSplit.getLocations()));
             LOG.debug("startTime:"+new Timestamp(startTimeSystemTime));
             LOG.debug("endTime:"+new Timestamp(endTimeSystemTime));
             long timelong = (endTimeSystemTime-startTimeSystemTime) / 1000;
@@ -122,6 +124,7 @@ public class DataInputTask implements Runnable {
         }finally {
             try {
                 fileIn.close();
+                in.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

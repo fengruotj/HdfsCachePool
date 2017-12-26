@@ -38,6 +38,8 @@ public class FSDataInputLineReaderBenchMark {
         LOG.info("endTime:"+new Timestamp(endTimeSystemTime));
         long timelong = (endTimeSystemTime-startTimeSystemTime) / 1000;
         LOG.info("totalTime:"+timelong+" s"+"------or------"+timelong/60+" min");
+        dataInputStream.close();
+        HdfsOperationUtil.releaseHDFSConnections();
         System.exit(0);
     }
 }

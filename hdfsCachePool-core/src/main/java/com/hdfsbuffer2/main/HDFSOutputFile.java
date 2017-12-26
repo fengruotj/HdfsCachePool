@@ -3,6 +3,7 @@ package com.hdfsbuffer2.main;
 import com.hdfsbuffer2.bufferinterface.BufferdataOutputHandler;
 import com.hdfsbuffer2.model.HdfsCachePool;
 import com.hdfsbuffer2.task.DataInputFormat;
+import com.hdfsbuffer2.util.HdfsOperationUtil;
 import com.hdfsbuffer2.util.PropertiesUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -51,6 +52,8 @@ public class HDFSOutputFile {
         LOG.info("endTime:"+new Timestamp(endTimeSystemTime));
         long timelong = (endTimeSystemTime-startTimeSystemTime) / 1000;
         LOG.info("totalTime:"+timelong+" s"+"------or------"+timelong/60+" min");
+        fileOutputStream.close();
+        HdfsOperationUtil.releaseHDFSConnections();
         System.exit(0);
     }
 }

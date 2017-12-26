@@ -51,7 +51,7 @@ public class HdfsOperationUtil {
     /**
      * 列出所有DataNode的名字信息
      */
-    public List<String> listDataNodeInfo() {
+    public static List<String> listDataNodeInfo() {
         List<String> list=new ArrayList<>();
 
         try {
@@ -75,7 +75,7 @@ public class HdfsOperationUtil {
      * @param dir
      * @throws IOException
      */
-    public void createDir(String dir) throws IOException {
+    public static void createDir(String dir) throws IOException {
         Path path = new Path(dir);
         hdfs.mkdirs(path);
         System.out.println("new dir \t" + conf.get("fs.default.name") + dir);
@@ -86,7 +86,7 @@ public class HdfsOperationUtil {
      * @param dirName
      * @throws IOException
      */
-    public void listFiles(String dirName) throws IOException {
+    public static void listFiles(String dirName) throws IOException {
         Path f = new Path(dirName);
         System.out.println(dirName + " has all files:");
         FileStatus[] status = hdfs.listStatus(f);
@@ -100,7 +100,7 @@ public class HdfsOperationUtil {
      * @param fileName
      * @throws IOException
      */
-    public void deleteFile(String fileName) throws IOException {
+    public static void deleteFile(String fileName) throws IOException {
         Path f = new Path(fileName);
         boolean isExists = hdfs.exists(f);
         if (isExists) { //if exists, delete
@@ -114,7 +114,7 @@ public class HdfsOperationUtil {
     /**
      * 查看文件是否存在
      */
-    public boolean checkFileExist(String filePath) {
+    public static boolean checkFileExist(String filePath) {
         boolean exist=false;
         try {
             Path a= hdfs.getHomeDirectory();
@@ -141,7 +141,7 @@ public class HdfsOperationUtil {
     /**
      *创建文件到HDFS系统上
      */
-    public void createFile(String fileLocation,String text) {
+    public static void createFile(String fileLocation,String text) {
         try {
             //Path f = new Path("/user/xxx/input02/file01");
             Path f = new Path(fileLocation);
@@ -162,7 +162,7 @@ public class HdfsOperationUtil {
      * 读取本地文件到HDFS系统<br>
      * 请保证文件格式一直是UTF-8，从本地->HDFS
      */
-    public void copyFileToHDFS(String SouceFilePath,String distinctFilePath) {
+    public static void copyFileToHDFS(String SouceFilePath,String distinctFilePath) {
         try {
             Path f = new Path(distinctFilePath);
             File file = new File(SouceFilePath);
@@ -196,7 +196,7 @@ public class HdfsOperationUtil {
      * @param buffersize 每一个数据块的大小
      * @throws IOException
      */
-    public void copyFileToHDFSBlock(String localFile, String hdfsFile,String buffersize) throws IOException{
+    public static void copyFileToHDFSBlock(String localFile, String hdfsFile,String buffersize) throws IOException{
         conf.set("dfs.block.size", buffersize);//第二个参数的单位是字节，并且是字符串形式
         FileSystem fs=FileSystem.get(conf);
         Path src=new Path(localFile);//参数是本地文件的绝对路径的字符串形式
@@ -208,7 +208,7 @@ public class HdfsOperationUtil {
     /**
      * 取得文件块所在的位置..
      */
-    public List<String> getBolockHosts(String filePath) {
+    public static List<String> getBolockHosts(String filePath) {
         List<String> list=new ArrayList<>();
         try {
             Path f = new Path(filePath);
@@ -236,7 +236,7 @@ public class HdfsOperationUtil {
     /**
      * 读取hdfs中的文件内容
      */
-    public void readFileFromHdfs(String filePath) {
+    public static void readFileFromHdfs(String filePath) {
         try {
             Path f = new Path(filePath);
 
@@ -261,7 +261,7 @@ public class HdfsOperationUtil {
      * @throws IllegalArgumentException
      * @throws FileNotFoundException
      */
-    public List<FileStatus> listFileStatus(String path) throws FileNotFoundException, IllegalArgumentException, IOException {
+    public static List<FileStatus> listFileStatus(String path) throws FileNotFoundException, IllegalArgumentException, IOException {
         FileStatus fileStatus[]=fs.listStatus(new Path(path));
         List list=new ArrayList();
         int listlength=fileStatus.length;
@@ -282,7 +282,7 @@ public class HdfsOperationUtil {
      * @return
      * @throws IOException
      */
-    public long getInputDirectoryLength(String path) throws IOException {
+    public static long getInputDirectoryLength(String path) throws IOException {
         FileStatus fileStatus[]=fs.listStatus(new Path(path));
         long length=0L;
         for (int i=0 ;i<fileStatus.length ;i++){
@@ -294,5 +294,17 @@ public class HdfsOperationUtil {
         return length;
     }
 
+    /**
+     * 释放HDFS资源连接
+     */
+    public static void releaseHDFSConnections(){
+        try {
+            fs.close();
+            hdfs.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }
 

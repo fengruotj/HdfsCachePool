@@ -22,7 +22,6 @@ import java.sql.Timestamp;
  */
 public class FSDataInputStreamBenchMark {
     private static final Log LOG = LogFactory.getLog(FSDataInputStreamBenchMark.class);
-    private static HdfsOperationUtil hdfsOperationUtil=new HdfsOperationUtil();
     private static byte[] recordDelimiterBytes;//记录分割符
     private static long Totalrows=0L;
     public static void main(String[] args) throws IOException {
@@ -40,8 +39,8 @@ public class FSDataInputStreamBenchMark {
         LOG.info("endTime:"+new Timestamp(endTimeSystemTime));
         long timelong = (endTimeSystemTime-startTimeSystemTime) / 1000;
         LOG.info("totalTime:"+timelong+" s"+"------or------"+timelong/60+" min");
-        fs.close();
         dataInputStream.close();
+        HdfsOperationUtil.releaseHDFSConnections();
         System.exit(0);
     }
 }

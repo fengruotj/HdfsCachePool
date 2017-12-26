@@ -2,6 +2,8 @@ package com.hdfsbuffer2.task;
 
 import com.hdfsbuffer2.model.HDFSLineBuffer;
 import com.hdfsbuffer2.util.HdfsOperationUtil;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
@@ -13,8 +15,6 @@ import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.lib.input.CompressedSplitLineReader;
 import org.apache.hadoop.mapreduce.lib.input.FileSplit;
 import org.apache.hadoop.mapreduce.lib.input.SplitLineReader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
@@ -24,7 +24,7 @@ import java.io.IOException;
  * 将数据写入HDFSLineBuffer中
  */
 public class LineDataInputTask implements Runnable {
-    private static final Logger LOG = LoggerFactory.getLogger(LineDataInputTask.class);
+    private static final Log LOG = LogFactory.getLog(LineDataInputTask.class);
     private long start;
     private long pos;
     private long end;
