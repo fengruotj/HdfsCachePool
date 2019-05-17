@@ -12,9 +12,7 @@ import org.apache.hadoop.mapreduce.InputSplit;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.ArrayDeque;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * locate com.hdfsbuffer.main
@@ -42,7 +40,7 @@ public class KafkaLineDataOutputMain {
         hdfsCachePool.hdfsDataOutputOrder(new LinedataOutputHandler() {
             public void LinedataOutput(List<Text> stringList,int hdfsbufferIndex) {
                 for(int i=0; i< stringList.size();i++){
-                    kafkaUtil.publishOrderMessage(kafkaTopic,kafkaPartitionsNum, (int) Totalrows,stringList.get(i).toString());
+                    kafkaUtil.publishOrderMessage(kafkaTopic, kafkaPartitionsNum, (int) Totalrows,stringList.get(i).toString());
                     Totalrows++;
                 }
             }
