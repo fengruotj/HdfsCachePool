@@ -3,7 +3,7 @@ Hadoop Distributed File System (HDFS) has slow serial read speed of the log stre
 
 ## License
 
-Whale is released under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
+HDFSCachePool is released under the [Apache 2 license](http://www.apache.org/licenses/LICENSE-2.0.html).
 
 ## Project Committers
 * Jie Tan ([@tjmaster](https://tjcug.github.io/))
